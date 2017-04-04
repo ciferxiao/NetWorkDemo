@@ -1,25 +1,57 @@
 apply plugin: 'com.android.library'
 
+Properties configProp = new Properties()
+configProp.load(new FileInputStream(file("$rootDir/config.properties")))
+
+String  server_address= System.properties['server_address']
+if (server_address==null||server_address.isEmpty()){
+    server_address==configProp['server_address']
+}
+//发布环境正式的 上线环境
+String publish_environment = 'formal'
+if (!'shiming'.equals(server_address)) {
+    publish_environment = 'personal'
+}
+
+def version_code = Integer.valueOf(new Date().format("yyyyMMdd"))
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
 
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode version_code
+        versionName configProp['version_code']
+
+        buildConfigField "String", "SERVER_ADDRESS_FORMAL", "\"http://api.juheapi.com/japi/\""
+        buildConfigField "String", "SERVER_ADDRESS_FORMAL_S", "\"https://v.juhe.cn/weather/\""
+        buildConfigField "String", "PUBLISH_ENVIRONMENT", "\"${publish_environment}\""
+        buildConfigField "String", "SERVER_ADDRESS_PERSONAL", "\"http://${server_address}/\""
     }
     buildTypes {
+        //todo why
+        debug {
+            versionNameSuffix '00'
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    //多渠道打包 脚本  以后解释
+//    publishNonDefault = true
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:25.2.0'
+
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    compile 'io.reactivex:rxandroid:1.1.0'
 }
