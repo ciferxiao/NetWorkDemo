@@ -110,6 +110,8 @@ public class TestBeanDemo {
                 this.temp = temp;
             }
 
+
+
             public String getWind_direction() {
                 return wind_direction;
             }
