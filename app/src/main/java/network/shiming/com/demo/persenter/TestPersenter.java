@@ -34,7 +34,7 @@ public class TestPersenter {
             @Override
             public void onSuccess(SMResponse<TestBeanDemo> response) {
                 System.out.println( "shiming "+response.reason);
-                mView.success(response.data);
+//                mView.success(response.data);
             }
 
             @Override
@@ -60,11 +60,11 @@ public class TestPersenter {
 
             @Override
             public void onSuccess(SMResponse<MuerDataBean> response) {
-                System.out.println("shiming " + response.data+"why null");
+                System.out.println("shiming " + response.ruselt+"why null");
                 System.out.println("shiming " + response.reason+"why reason");
                 System.out.println("shiming " + response.error_code+"why error_code");
                 System.out.println("shiming " + response+"why resultcode");
-                mView.getCatSuccess(response.data);
+//                mView.getCatSuccess(response.data);
             }
 
             @Override
@@ -89,11 +89,11 @@ public class TestPersenter {
 
             @Override
             public void onSuccess(SMResponse<ArrayList<TadayBean>> response) {
-                System.out.println("shiming " + response.data+" why null");
-                System.out.println("shiming " + response.reason+" why reason");
-                System.out.println("shiming " + response.error_code+" why error_code");
-                System.out.println("shiming " + response+"why resultcode");
-                mView.getTadayBean(response.data);
+                System.out.println("shiming  onSuccess" + response.ruselt+" why null");
+                System.out.println("shiming onSuccess" + response.reason+" why reason");
+                System.out.println("shiming onSuccess" + response.error_code+" why error_code");
+                System.out.println("shiming onSuccess" + response+"why resultcode");
+//                mView.getTadayBean(response.data);
             }
 
             @Override

@@ -1,6 +1,9 @@
 package network.shiming.com.network.retrofit;
 
+import java.util.ArrayList;
+
 import network.shiming.com.network.entities.BaseOneBean;
+import network.shiming.com.network.entities.TadayBean;
 
 /**
  * Created by shiming on 2017/4/3.
@@ -132,13 +135,13 @@ public class SMResponse<T> extends BaseOneBean {
 //        "error_code":0
 //    "reason":"请求成功！",
 //            "error_code":0
-    public T data;
+    public T ruselt;
 //    public String resultcode;
     public String reason;
     public int error_code;
 
     @Override
     public String[] uniqueKey() {
-        return new String[]{"105"};
+        return new String[]{""};
     }
 }
