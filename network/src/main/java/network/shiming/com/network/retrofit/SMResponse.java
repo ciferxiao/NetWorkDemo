@@ -1,9 +1,8 @@
 package network.shiming.com.network.retrofit;
 
-import java.util.ArrayList;
 
 import network.shiming.com.network.entities.BaseOneBean;
-import network.shiming.com.network.entities.TadayBean;
+
 
 /**
  * Created by shiming on 2017/4/3.
@@ -123,20 +122,13 @@ import network.shiming.com.network.entities.TadayBean;
  }
  */
 
-// 没有服务器  这里使用的 聚合数据查询的天气预报
+// 没有服务器  这里使用的 聚合数据查询的免费的新闻
 //  用户名 ：15118531365  密码 ：lishiming
 //    只有500次   节约到用
 //    https://www.juhe.cn/box/index/id/39
 public class SMResponse<T> extends BaseOneBean {
 
-//      "resultcode":"200",
-//    "reason":"successed!",
-//         "result":Object{...},
-//        "error_code":0
-//    "reason":"请求成功！",
-//            "error_code":0
-    public T ruselt;
-//    public String resultcode;
+    public T result; // // TODO: 2017/4/8   这里哈哈
     public String reason;
     public int error_code;
 

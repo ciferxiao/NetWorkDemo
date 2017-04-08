@@ -50,35 +50,28 @@ public class SMRetrofit {
             //is https
             mServerAddressFormal=BuildConfig.SERVER_ADDRESS_FORMAL_S;
         }
-//        if ("personal".equals(publishEnvironment)){
-//            mServerAddressFormal=BuildConfig.SERVER_ADDRESS_PERSONAL;
-//        }
-//        initRetrofit("http://api.juheapi.com/japi/");++++
         System.out.println( " host shiming "+ mServerAddressFormal);
         initRetrofit(mServerAddressFormal);
-        new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                return null;
-            }
-        };
+
     }
 
     private void initRetrofit(String serverAddressFormal) {
         Log.i(this.getClass().getName(),"serverAddress="+serverAddressFormal);
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-        if (BuildConfig.DEBUG){
+        Log.i("shiming ",BuildConfig.DEBUG+"");
+        if (!BuildConfig.DEBUG){
             System.out.println( "shiming debug log");
             httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         }else {
             //上线  不给日记输出
             System.out.println( "shiming "+" no log");
-//            httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE);
-            httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE);
         }
         File cache = new File(mContext.getCacheDir(), "cache");
         int cacheSize=10*1024*1024;
         Cache cache1 = new Cache(cache, cacheSize);
+        //这里我还得说明一下 这个拦截器的原因  你比如说一个ip地址 ，用app端去访问和 pc端访问回来的数据不一样
+        //这就是拦截器的作用  比如在app的版本不同 对一个地址访问回来的数据会不一样
         mClient = new OkHttpClient.Builder().cache(cache1)
 //              .addInterceptor(new HeadersInterceptor(mContext))//拦截器 如果项目需要的话 如果大公司的话 该死的项目经理会要求拿到用户的手机设备的信息发布渠道的东西 ，需要这里填入
                 .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
@@ -113,6 +106,7 @@ public class SMRetrofit {
         }
         return mRetrofit;
     }
+    // 如果项目中有用到的https的地方  使用这个初始化 并且在build文件去配置的你地址
     public static SMRetrofit getInstance(Context context,boolean isHttps){
         if (mRetrofit==null||isHttps){
             synchronized (SMRetrofit.class){

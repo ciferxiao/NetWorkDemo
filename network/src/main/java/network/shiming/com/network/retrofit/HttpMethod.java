@@ -7,7 +7,7 @@ import rx.functions.Action0;
 import rx.schedulers.Schedulers;
 
 /**
- * Created by shiming on 2017/4/3.
+ * Created by shiming on 2017/4/8.
  * RxJava最核心的两个东西是Observables（被观察者，事件源）
  * 和Subscribers（订阅者）。Observables发出一系列事件，
  * Subscribers处理这些事件

@@ -1,6 +1,5 @@
 package network.shiming.com.demo.bean;
 
-import java.util.ArrayList;
 
 import network.shiming.com.network.entities.BaseOneBean;
 

@@ -60,8 +60,6 @@ public class BaseSubscriber<T extends SMResponse> extends Subscriber<T>{
     public void onNext(T response) {
         Log.i(TAG,"onNext");
         if (mBaseSubscriber!=null){
-            System.out.println( "jieguoma shiming"+response.error_code);
-            System.out.println( "jieguoma shiming"+response.ruselt);
             System.out.println(response.error_code==0);
             if (response.error_code==0){//结果码0  聚合数据的返回码看文档 o
                 mBaseSubscriber.onSuccess(response);

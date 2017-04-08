@@ -26,7 +26,7 @@ android {
         versionName configProp['version_code']
 
         buildConfigField "String", "SERVER_ADDRESS_FORMAL", "\"http://api.juheapi.com/japi/\""
-        buildConfigField "String", "SERVER_ADDRESS_FORMAL_S", "\"https://v.juhe.cn/weather/\""
+        buildConfigField "String", "SERVER_ADDRESS_FORMAL_S", "\"https://api.juheapi.com/japi/\""
         buildConfigField "String", "PUBLISH_ENVIRONMENT", "\"${publish_environment}\""
         buildConfigField "String", "SERVER_ADDRESS_PERSONAL", "\"http://${server_address}/\""
     }
