@@ -17,8 +17,6 @@ public class BaseSubscriber<T extends SMResponse> extends Subscriber<T>{
         this.mBaseSubscriber=baseSubscriber;
     }
 
-
-
     public void onBegin(){
         Log.i(TAG,"onbegin");
         if (mBaseSubscriber!=null){

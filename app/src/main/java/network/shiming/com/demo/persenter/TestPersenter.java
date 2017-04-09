@@ -26,27 +26,22 @@ public class TestPersenter {
         mTestModel = new TestModel(context);
     }
 
-    public void getTaday(String cai) {
-        mTestModel.getTaday(cai, new BaseSubscriber<SMResponse<ArrayList<TadayBean>>>(new SubscriberListener<SMResponse<ArrayList<TadayBean>>>() {
-
-
+    public void getTaday(int nomth,int day) {
+        mTestModel.getTaday(nomth,day, new BaseSubscriber<SMResponse<ArrayList<TadayBean>>>(new SubscriberListener<SMResponse<ArrayList<TadayBean>>>() {
             @Override
             public void onSuccess(SMResponse<ArrayList<TadayBean>> response) {
                 if (response.result!=null){
                     mView.getTadayBean(response.result);
                 }
             }
-
             @Override
             public void onFail(String errorCode, String errorMsg) {
                 mView.fail(errorCode, errorMsg);
             }
-
             @Override
             public void onError(Throwable e) {
                 System.out.println("shiming " + e);
             }
-
             @Override
             public void checkLogin(String errorCode, String erroMsg) {
 

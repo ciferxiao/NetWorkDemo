@@ -2,9 +2,13 @@ package network.shiming.com.demo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -21,9 +25,12 @@ import network.shiming.com.demo.view.TestView;
  */
 public class MainActivity extends AppCompatActivity implements TestView, View.OnClickListener {
     public static final String uri2="toh";
-    private TextView mTv;
     private TestPersenter mTestPersenter;
     private Button mBtn;
+    private EditText mDay;
+    private EditText mMonth;
+    private RecyclerView mRecyclerView;
+    private SMAdapter mSmAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,29 +44,37 @@ public class MainActivity extends AppCompatActivity implements TestView, View.On
 
     private void initListener() {
         mBtn.setOnClickListener(this);
+        mSmAdapter = new SMAdapter(this, null);
+        mRecyclerView.setAdapter(mSmAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void initView() {
-        mTv = (TextView) findViewById(R.id.text);
         mBtn = (Button) findViewById(R.id.btn);
+        mMonth = (EditText) findViewById(R.id.et_month);
+        mDay = (EditText) findViewById(R.id.et_day);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
     }
 
 
     @Override
     public void getTadayBean(ArrayList<TadayBean> bean) {
-        mTv.setText(" 数据成功 ：\n\r"+bean.get(0).day+" "+bean.get(0).title+" "+bean.get(0).year);
+        mSmAdapter.addData(bean);
     }
 
     @Override
     public void fail(String error_code, String msg) {
         System.out.println("shiming error"+msg);
-        mTv.setText("数据失败\n\r"+msg);
     }
 
     @Override
     public void onClick(View v) {
         //点击请求网络  其实这里的参数在这里传入的话 才好，但是我在做测试 就简便了
         //还望见谅
-        mTestPersenter.getTaday("d");
+        if (mMonth.getText().equals("")||mDay.getText().equals("")){
+            Toast.makeText(MainActivity.this,"不能为空",Toast.LENGTH_SHORT).show();
+        }else {
+            mTestPersenter.getTaday(new Integer(mMonth.getText().toString()),new Integer(mDay.getText().toString()));
+        }
     }
 }

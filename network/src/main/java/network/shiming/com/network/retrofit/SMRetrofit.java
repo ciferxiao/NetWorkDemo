@@ -73,7 +73,7 @@ public class SMRetrofit {
         //这里我还得说明一下 这个拦截器的原因  你比如说一个ip地址 ，用app端去访问和 pc端访问回来的数据不一样
         //这就是拦截器的作用  比如在app的版本不同 对一个地址访问回来的数据会不一样
         mClient = new OkHttpClient.Builder().cache(cache1)
-//              .addInterceptor(new HeadersInterceptor(mContext))//拦截器 如果项目需要的话 如果大公司的话 该死的项目经理会要求拿到用户的手机设备的信息发布渠道的东西 ，需要这里填入
+//              .addInterceptor(new Interceptor(mContext))//拦截器 如果项目需要的话 如果大公司的话 该死的项目经理会要求拿到用户的手机设备的信息发布渠道的东西 ，需要这里填入
                 .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)

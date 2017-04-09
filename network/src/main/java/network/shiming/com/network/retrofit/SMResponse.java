@@ -128,7 +128,7 @@ import network.shiming.com.network.entities.BaseOneBean;
 //    https://www.juhe.cn/box/index/id/39
 public class SMResponse<T> extends BaseOneBean {
 
-    public T result; // // TODO: 2017/4/8   这里哈哈
+    public T result; // TODO: 2017/4/8   这里哈哈  这里妈的最坑  这里返回的状态码 写错了，我们就拿不到数据
     public String reason;
     public int error_code;
 

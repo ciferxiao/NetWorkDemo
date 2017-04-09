@@ -25,8 +25,8 @@ public class TestModel {
         mService = SMRetrofit.getService(context, TestService.class);
     }
 
-    public void getTaday(String cai,BaseSubscriber infos){
-        Observable<SMResponse<ArrayList<TadayBean>>> data = mService.getTaday("b15674dbd34ec00ded57b369dfdabd90", "1.0", 4, 4);
+    public void getTaday(int nomth,int day,BaseSubscriber infos){
+        Observable<SMResponse<ArrayList<TadayBean>>> data = mService.getTaday("b15674dbd34ec00ded57b369dfdabd90", "1.0",nomth, day);
         HttpMethod.toSubscribe(data,infos);
     }
 
