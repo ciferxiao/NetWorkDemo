@@ -2,6 +2,8 @@ package network.shiming.com.demo.persenter;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 
 import network.shiming.com.demo.bean.TadayBean;
@@ -26,10 +28,16 @@ public class TestPersenter {
         mTestModel = new TestModel(context);
     }
 
-    public void getTaday(int nomth,int day) {
+    public void getTaday(int nomth,String day) {
+        System.out.println("shiming getTaday ");
         mTestModel.getTaday(nomth,day, new BaseSubscriber<SMResponse<ArrayList<TadayBean>>>(new SubscriberListener<SMResponse<ArrayList<TadayBean>>>() {
             @Override
             public void onSuccess(SMResponse<ArrayList<TadayBean>> response) {
+                Gson gson = new Gson();
+                String s = gson.toJson(response);
+
+                System.out.println("shiming  "+s);
+
                 if (response.result!=null){
                     mView.getTadayBean(response.result);
                 }
@@ -37,6 +45,7 @@ public class TestPersenter {
             @Override
             public void onFail(String errorCode, String errorMsg) {
                 mView.fail(errorCode, errorMsg);
+                System.out.println("shiming  "+errorCode);
             }
             @Override
             public void onError(Throwable e) {
@@ -44,7 +53,7 @@ public class TestPersenter {
             }
             @Override
             public void checkLogin(String errorCode, String erroMsg) {
-
+                System.out.println("shiming errorCode== "+errorCode);
             }
         }));
     }

@@ -32,12 +32,9 @@ public class TadayBean extends BaseOneBean
     public String[] uniqueKey() {
         return new String[0];
     }
-        public String _id;
+
         public String title;
-        public String pic;
-        public int year;
-        public int month;
-        public int day;
-        public String des;
-        public String lunar;
+        public String day;
+        public String date;
+        public String e_id;
 }

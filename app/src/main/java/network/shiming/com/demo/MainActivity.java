@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,14 +25,14 @@ import network.shiming.com.demo.view.TestView;
  * 互相学习
  */
 public class MainActivity extends AppCompatActivity implements TestView, View.OnClickListener {
-    public static final String uri2="toh";
+    public static final String uri2="queryEvent.php";
     private TestPersenter mTestPersenter;
     private Button mBtn;
     private EditText mDay;
     private EditText mMonth;
     private RecyclerView mRecyclerView;
     private SMAdapter mSmAdapter;
-
+   // http://v.juhe.cn/todayOnhistory/queryEvent.php?key=b15674dbd34ec00ded57b369dfdabd90&date=1/1
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,12 +70,16 @@ public class MainActivity extends AppCompatActivity implements TestView, View.On
 
     @Override
     public void onClick(View v) {
-        //点击请求网络  其实这里的参数在这里传入的话 才好，但是我在做测试 就简便了
+        //点击请求网络  其实这里的参数在这里传入的话 才好，但是我在做测试 就简便了onCompleted
         //还望见谅
-        if (mMonth.getText().equals("")||mDay.getText().equals("")){
+        System.out.println("shiming "+mMonth.getText());
+        System.out.println("shiming "+mDay.getText());
+        System.out.println("shiming mMonth"+mMonth.getText().equals(""));
+        System.out.println("shiming mDay"+mDay.getText().equals(""));
+        if (TextUtils.isEmpty(mMonth.getText())||TextUtils.isEmpty(mDay.getText())){
             Toast.makeText(MainActivity.this,"不能为空",Toast.LENGTH_SHORT).show();
         }else {
-            mTestPersenter.getTaday(new Integer(mMonth.getText().toString()),new Integer(mDay.getText().toString()));
+            mTestPersenter.getTaday(1,mMonth.getText()+"/"+mDay.getText());
         }
     }
 }

@@ -36,19 +36,16 @@ public class SMAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         TadayBean tadayBean = mDatas.get(position);
         MyViewHolder myViewHolder= (MyViewHolder) holder;
-        myViewHolder.mData.setText("时间"+tadayBean.year+"年"
-        +tadayBean.month+"月"+tadayBean.day+"日"+"\n\r"
-                +"农历："+tadayBean.lunar
-        );
         myViewHolder.mTitle.setText(tadayBean.title);
-        myViewHolder.mDes.setText(tadayBean.des);
-        ImageLoader.getInstance().displayImage(tadayBean.pic, myViewHolder.mImg);
+        myViewHolder.mDes.setText(tadayBean.day);
+        //ImageLoader.getInstance().displayImage(tadayBean.pic, myViewHolder.mImg);
     }
     @Override
     public int getItemCount() {
         return mDatas!=null?mDatas.size():0;
     }
     public void addData(ArrayList<TadayBean> bean) {
+        mDatas.clear();
         mDatas.addAll(bean);
         notifyDataSetChanged();
     }

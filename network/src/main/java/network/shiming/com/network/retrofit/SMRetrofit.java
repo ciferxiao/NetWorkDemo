@@ -43,8 +43,9 @@ public class SMRetrofit {
     }
 
     private void initRetrofit() {
-        //no https
+        //no https  http://v.juhe.cn/todayOnhistory/queryEvent.php?key=b15674dbd34ec00ded57b369dfdabd90&date=1/1
         mServerAddressFormal = BuildConfig.SERVER_ADDRESS_FORMAL;
+        mServerAddressFormal ="http://v.juhe.cn/todayOnhistory/";
         String publishEnvironment = BuildConfig.PUBLISH_ENVIRONMENT;
         if (mIsHttps){
             //is https
@@ -94,7 +95,7 @@ public class SMRetrofit {
      * @return
      * 双重锁判断 单利
      * 由于我自己用的聚合的数据接口 我这里就默认了我这里不是https的接口
-     *
+     *http://v.juhe.cn/todayOnhistory/queryEvent.php?key=b15674dbd34ec00ded57b369dfdabd90&date=1/1
      */
     public static SMRetrofit getInstance(Context context){
         if (mRetrofit==null||mIsHttps){

@@ -25,8 +25,14 @@ public class TestModel {
         mService = SMRetrofit.getService(context, TestService.class);
     }
 
-    public void getTaday(int nomth,int day,BaseSubscriber infos){
-        Observable<SMResponse<ArrayList<TadayBean>>> data = mService.getTaday("b15674dbd34ec00ded57b369dfdabd90", "1.0",nomth, day);
+    /**
+     * http://v.juhe.cn/todayOnhistory/queryEvent.php?key=b15674dbd34ec00ded57b369dfdabd90&date=1/1
+     * @param nomth
+     * @param day
+     * @param infos
+     */
+    public void getTaday(int nomth,String day,BaseSubscriber infos){
+        Observable<SMResponse<ArrayList<TadayBean>>> data = mService.getTaday("b15674dbd34ec00ded57b369dfdabd90", day);
         HttpMethod.toSubscribe(data,infos);
     }
 
