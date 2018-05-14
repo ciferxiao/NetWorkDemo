@@ -56,7 +56,7 @@ public class DownLoadActivity extends AppCompatActivity implements View.OnClickL
             super.handleMessage(msg);
             if (msg.what==1){
                 String str = (String) msg.obj;
-                Toast.makeText(DownLoadActivity.this,str,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(DownLoadActivity.this,str,Toast.LENGTH_SHORT).show();
                 mTvProgress.setText(str);
             }
         }
