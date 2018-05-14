@@ -1,5 +1,6 @@
 package network.shiming.com.demo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -41,6 +42,14 @@ public class MainActivity extends AppCompatActivity implements TestView, View.On
         initListener();
         //p层的绑定
         mTestPersenter = new TestPersenter(this, this);
+
+        findViewById(R.id.btn_down_load).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,DownLoadActivity.class));
+            }
+        });
+
     }
 
     private void initListener() {

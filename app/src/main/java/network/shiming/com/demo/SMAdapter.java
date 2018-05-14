@@ -34,11 +34,12 @@ public class SMAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        //[{"date":"619年01月20日","day":"1/20","e_id":"886","title":"李密叛后被杀"}
         TadayBean tadayBean = mDatas.get(position);
         MyViewHolder myViewHolder= (MyViewHolder) holder;
         myViewHolder.mTitle.setText(tadayBean.title);
-        myViewHolder.mDes.setText(tadayBean.day);
-        //ImageLoader.getInstance().displayImage(tadayBean.pic, myViewHolder.mImg);
+        myViewHolder.mDes.setText("日期"+tadayBean.day);
+        myViewHolder.mDate.setText("发生的具体的日期：：："+tadayBean.date);
     }
     @Override
     public int getItemCount() {
@@ -51,16 +52,14 @@ public class SMAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        private  TextView mData;
         private TextView mTitle;
         private  TextView mDes;
-        private  ImageView mImg;
+        private  TextView mDate;
         public MyViewHolder(View itemView) {
            super(itemView);
-            mData = (TextView) itemView.findViewById(R.id.tv_data);
             mDes = (TextView) itemView.findViewById(R.id.tv_des);
             mTitle = (TextView) itemView.findViewById(R.id.tv_title);
-            mImg = (ImageView) itemView.findViewById(R.id.img);
+            mDate = (TextView) itemView.findViewById(R.id.tv_data_);
 
        }
    }

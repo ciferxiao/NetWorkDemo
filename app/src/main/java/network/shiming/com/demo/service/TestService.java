@@ -22,5 +22,4 @@ public interface TestService {
     @GET(MainActivity.uri2)
     Observable<SMResponse<ArrayList<TadayBean>>> getTaday(@Query("key") String key, @Query("date") String date);
 
-
 }
